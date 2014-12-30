@@ -1,0 +1,13 @@
+---
+- name: install holland packages
+  yum: name={{ item }} state=present
+  when: ansible_os_family == 'RedHat'
+  with_items:
+    - holland
+    - holland-mysqldump
+
+- name: add holland.conf
+  template: src=holland/holland.conf dest=/etc/holland/holland.conf owner=root group=root mode=0644
+
+- name: add default.conf
+  template: src=holland/default.conf dest=/etc/holland/backupsets/default.conf owner=root group=root mode=0644
