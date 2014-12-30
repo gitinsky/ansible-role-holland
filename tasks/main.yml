@@ -6,6 +6,20 @@
     - holland
     - holland-mysqldump
 
+- name: add holland repo
+  template: src=holland/trusty.list dest=/etc/apt/sources.list.d/holland.list group=root mode=0644
+  notify: apt-get update
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '14.04'
+
+- meta: flush_handlers
+
+- name: install holland packages
+  apt: name={{ item }} state=present force=yes
+  when: ansible_os_family == 'Debian'
+  with_items:
+    - holland
+    - holland-mysqldump
+
 - name: add holland.conf
   template: src=holland/holland.conf dest=/etc/holland/holland.conf owner=root group=root mode=0644
 
