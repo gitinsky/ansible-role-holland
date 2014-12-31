@@ -31,5 +31,8 @@
 - name: add default.conf
   template: src=holland/default.conf dest=/etc/holland/backupsets/default.conf owner=root group=root mode=0644
 
+- name: add mysqldump.conf
+  template: src=holland/mysqldump.conf dest=/etc/holland/providers/mysqldump.conf owner=root group=root mode=0644
+
 - name: add cron file
   template: src=holland/holland dest=/etc/cron.d/holland owner=root group=root mode=0644
