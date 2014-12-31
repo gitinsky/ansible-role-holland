@@ -11,6 +11,11 @@
   notify: apt-get update
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '14.04'
 
+- name: add holland repo
+  template: src=holland/precise.list dest=/etc/apt/sources.list.d/holland.list group=root mode=0644
+  notify: apt-get update
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '12.04'
+
 - meta: flush_handlers
 
 - name: install holland packages
