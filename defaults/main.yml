@@ -1,2 +1,3 @@
 ---
 holland_backup_dir: /var/spool/holland
+holland_binlog_position: "yes"
